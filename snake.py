@@ -1,5 +1,6 @@
 from turtle import Turtle
 
+# Configuration
 SNAKE_SHAPE = "square"
 SNAKE_COLOR = "white"
 MOVE_DISTANCE = 20
@@ -46,6 +47,7 @@ class Snake:
 
         self.segments[0].forward(MOVE_DISTANCE)
 
+    # Snake control functions
     def up(self):
         if self.head.heading() != HEAD_ANGLE["DOWN"]:
             self.head.setheading(HEAD_ANGLE["UP"])
