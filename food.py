@@ -17,7 +17,6 @@ class Food(Turtle):
         self.shape(FOOD_SHAPE)
         self.color(FOOD_COLOR)
         self.shapesize(stretch_wid=0.5, stretch_len=0.5)
-        self.refresh()
 
     def refresh(self):
         range_of_axis = range(-BOUNDARY, BOUNDARY + 1, 10)

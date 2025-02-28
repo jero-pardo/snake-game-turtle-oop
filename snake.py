@@ -3,6 +3,7 @@ from turtle import Turtle
 # Configuration
 SNAKE_SHAPE = "square"
 SNAKE_COLOR = "white"
+SNAKE_DEL_LOC = (1000, 1000)
 MOVE_DISTANCE = 20
 HEAD_ANGLE = {
     "UP": 90,
@@ -13,21 +14,28 @@ HEAD_ANGLE = {
 
 
 class Snake:
-    def __init__(self, x_pos=0, y_pos=0):
+    def __init__(self, position=(0, 0)):
         """
         Creates a Snake with the head on a given x-axis and y-axis. if none is given, x and y has a default value of 0.
         the body is created on the x-axis
         """
         self.segments = []
-        self.create_snake(x_pos, y_pos)
+        self.head = ""
+        self.create_snake(position)
+
+    def create_snake(self, position):
+        new_x_pos = position[0]
+        new_y_pos = position[1]
+        for i in range(3):
+            self.add_segment((new_x_pos, new_y_pos))
+            new_x_pos -= MOVE_DISTANCE
+
         self.head = self.segments[0]
 
-    def create_snake(self, x, y):
-        new_x_pos = x
-        for i in range(3):
-            position = (new_x_pos, y)
-            self.add_segment(position)
-            new_x_pos -= MOVE_DISTANCE
+    def kill_snake(self):
+        for seg in self.segments:
+            seg.setpos(SNAKE_DEL_LOC)
+        self.segments.clear()
 
     def add_segment(self, position):
         snake_turtle = Turtle(shape=SNAKE_SHAPE)
@@ -46,6 +54,7 @@ class Snake:
             self.segments[segment_num].goto(new_x, new_y)
 
         self.segments[0].forward(MOVE_DISTANCE)
+
 
     # Snake control functions
     def up(self):
