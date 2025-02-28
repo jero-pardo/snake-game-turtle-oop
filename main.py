@@ -65,6 +65,5 @@ screen.onkey(snake.left, "Left")
 screen.onkey(snake.right, "Right")
 screen.onscreenclick(restart_btn_click, 1)
 
-
 start_game()
 screen.mainloop()
